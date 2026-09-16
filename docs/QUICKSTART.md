@@ -8,12 +8,12 @@ The repo **is** the skill — clone it straight into your agent's skills directo
 
 **Claude Code:**
 ```bash
-git clone https://github.com/CyberTycoon/vibe-to-ship.git ~/.claude/skills/vibe-to-ship
+git clone https://github.com/sighlars/vibe-to-ship.git ~/.claude/skills/vibe-to-ship
 ```
 
 **opencode:**
 ```bash
-git clone https://github.com/CyberTycoon/vibe-to-ship.git .opencode/skills/vibe-to-ship
+git clone https://github.com/sighlars/vibe-to-ship.git .opencode/skills/vibe-to-ship
 ```
 
 Updates are one command: `git -C ~/.claude/skills/vibe-to-ship pull`.

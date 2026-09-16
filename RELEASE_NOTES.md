@@ -29,7 +29,7 @@ self-verifying builder. Works standalone; supercharged with OpenLotus memory.
 ```bash
 cp -r vibe-to-ship ~/.claude/skills/      # Claude Code
 cp -r vibe-to-ship .opencode/skills/      # opencode
-npx skills add https://github.com/CyberTycoon/vibe-to-ship  # any agent
+npx skills add https://github.com/sighlars/vibe-to-ship  # any agent
 ```
 
 Then: `"Run vibe-to-ship triage on this repo"` — you get High / Watch / Noise

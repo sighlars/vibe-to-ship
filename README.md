@@ -12,10 +12,10 @@ vibe-to-ship is a drop-in skill that closes that gap. It installs a 5-beat opera
 
 ```bash
 # Claude Code
-git clone https://github.com/CyberTycoon/vibe-to-ship.git ~/.claude/skills/vibe-to-ship
+git clone https://github.com/sighlars/vibe-to-ship.git ~/.claude/skills/vibe-to-ship
 
 # opencode
-git clone https://github.com/CyberTycoon/vibe-to-ship.git .opencode/skills/vibe-to-ship
+git clone https://github.com/sighlars/vibe-to-ship.git .opencode/skills/vibe-to-ship
 ```
 
 The repo **is** the skill (`SKILL.md` at the root) — cloning it into your agent's skills directory is the whole install. Updates are one command: `git -C ~/.claude/skills/vibe-to-ship pull`. Then, from inside **your project**, run:
