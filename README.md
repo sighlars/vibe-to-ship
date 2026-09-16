@@ -4,6 +4,10 @@
   <img src="assets/demo-loop.gif" alt="The vibe-to-ship 5-beat loop running in a terminal: triage, act, verify, learn" width="100%">
 </p>
 
+<p align="center">
+  <a href="https://m8ven.ai/mcp/cybertycoon/vibe-to-ship"><img src="https://m8ven.ai/badge/mcp/cybertycoon/vibe-to-ship?variant=verified" alt="M8ven Verified — independently scored"></a>
+</p>
+
 **Your agent ships. This skill makes sure it ships the truth.**
 
 AI coding agents are relentless builders and unreliable narrators. They declare "authentication is complete" while 14 files sit uncommitted, 6 tests are missing, and half the planned flows don't exist. The gap between what your agent *says* and what your repository *shows* is where projects die quietly.
@@ -80,11 +84,7 @@ vibe-to-ship/
 
 `install.sh` appends a standing-rules block to `AGENTS.md` (or `.cursor/rules/openlotus.mdc`) so every future session inherits the loop. It never overwrites existing config, and re-running it is a no-op.
 
-## Works with your agent environment today
-
 vibe-to-ship is plain shell + markdown, so it pairs with every environment your agent runs in — **Claude Code, OpenCode, Cursor, VS Code, Neovim** — and anything else that reads `AGENTS.md` or speaks MCP. No plugins, no per-editor glue.
-
-**Connectors on the roadmap** (GitHub PR state, Linear, Figma, Slack — deeper platform integrations): see the [OpenLotus connectors page](https://www.openlotus.io/dashboard/connectors). The skill itself needs none of them; your local git is the first reality source.
 
 ## Optional: persistent memory with OpenLotus MCP
 
