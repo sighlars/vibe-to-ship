@@ -1,63 +1,45 @@
 # Contributing to vibe-to-ship
 
-Thanks for your interest in improving vibe-to-ship. This document covers the workflow, conventions, and the bar for contributions.
+Thanks for wanting to improve the skill. It's small on purpose — contributions that keep it
+small, sharp, and verified are the ones that land.
 
-## Getting started
+## Ground rules
 
-1. Fork and clone the repo
-2. Run `./scripts/install.sh` to set up standing rules
-3. Run `./scripts/doctor.sh` to verify your environment
-4. Create a feature branch from `main`
+1. **The loop is the product.** Changes that add steps, dashboards, or config surface are
+   unlikely to land. Changes that make an existing beat faster, clearer, or harder to fake are welcome.
+2. **Every script must survive a fresh repo.** Test your change against a repo with zero
+   commits, a repo mid-branch with dirty files, and a clean repo. Fresh repos already bit us once (`quiet ?d`).
+3. **No network calls.** The scripts run offline, everywhere, always.
+4. **ShellCheck clean.** CI runs shellcheck on `scripts/*.sh`. If your change adds a warning, it fails the build.
 
-## What we accept
+## How to submit
 
-**High-value contributions:**
-- Script improvements (`install.sh`, `doctor.sh`, `triage.sh`) — must pass `bash -n` and `shellcheck`
-- Documentation that helps a new user get value in under 5 minutes
-- New patterns in `patterns/` that solve real agent coordination problems
-- References in `references/` that improve the skill's memory and decision quality
+1. Fork, then create a branch from `main`.
+2. Make the change. If it touches a script, run the three-repo test above.
+3. Open a pull request with:
+   - **What** changed
+   - **Why** — which beat it improves, or which failure you hit
+   - **How you tested it** — the actual commands, not "tested manually"
 
-**Out of scope:**
-- UI/visual changes (this is a CLI/MCP skill, not a web app)
-- Features that require a running server or database
-- Changes that break POSIX compatibility (scripts must run on macOS, Linux, and Git Bash on Windows)
+PRs that show their test evidence get merged fast. PRs that say "should work" get looked at
+eventually.
 
-## Code standards
+## Reporting bugs
 
-### Shell scripts
+Open an issue with:
+- The exact command you ran and its full output
+- What you expected vs. what happened
+- Your git version and OS (the scripts lean on POSIX sh — Windows users are on Git Bash)
 
-- POSIX `sh` — no bashisms, no `[[ ]]`, no arrays
-- `set -eu` at the top of every script
-- All variables quoted: `"$var"` not `$var`
-- No trailing whitespace
-- Pass `shellcheck` with zero warnings
+## Scope notes
 
-### Documentation
+- **Agent instructions** (`SKILL.md`): changes welcome, but keep every instruction actionable
+  and checkable. "Be thorough" is not an instruction; "run `scripts/verify.sh` and quote the
+  output" is.
+- **New beats**: probably not. Five beats is the whole idea. Propose it in an issue first.
+- **Other agent platforms**: the skill is agent-agnostic by design (plain markdown + sh).
+  Port notes are welcome as docs, not as code forks.
 
-- Markdown with fenced code blocks
-- One idea per paragraph
-- No jargon without a plain-English explanation on first use
-- Link to existing docs rather than duplicating content
+## License
 
-## Commit messages
-
-Use conventional commits:
-
-```
-feat: add --json flag to doctor.sh
-fix: handle missing git in triage.sh
-docs: clarify install steps for Cursor users
-```
-
-## Pull request checklist
-
-Before submitting:
-
-- [ ] `bash -n scripts/*.sh` passes
-- [ ] `shellcheck scripts/*.sh` passes (or is suppressed with a documented reason)
-- [ ] README updated if usage or behavior changed
-- [ ] PR description explains *why* the change matters, not just what changed
-
-## Getting help
-
-Open an issue with the `question` label. We respond within 48 hours for substantive questions.
+By contributing, you agree your contributions are licensed under the repository's license.
