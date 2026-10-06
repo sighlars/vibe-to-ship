@@ -141,8 +141,9 @@ ahead: each beat's output is the next beat's input.
 Check for setup, in this order:
 
 1. **Pairing**: `.openlotus/config.json` exists with `projectId`?
-2. **MCP server**: `mcp.json` (or `claude_desktop_config.json` / `.cursor/mcp.json`) points at an existing `cli/mcp.mjs` (absolute path, file must exist)?
+2. **MCP server**: `mcp.json` (or `claude_desktop_config.json` / `.cursor/mcp.json`) launches `npx openlotus agent` (a local-checkout absolute path to `cli/mcp.mjs` also works)?
 3. **Rules block**: `AGENTS.md` (and `CLAUDE.md` → `@AGENTS.md` stub for Claude Code) contains the standing-rules block from `references/agent-rules-snippet.md`?
+4. **Map seeded**: `npx openlotus bootstrap` has run at least once (or `bootstrap_state` via MCP)?
 
 **If any piece is missing, do it now — don't ask the user to do it by hand:**
 
@@ -158,8 +159,9 @@ Check for setup, in this order:
      ask the user to open it manually, then wait for the pairing file. Never proceed unpaired without saying so.
    - **Failure mode:** user has no OpenLotus account and declines → continue in
      local-only mode (`PROGRESS.md` as the tree) and say so in one line.
-2. Write `mcp.json` pointing at the local `cli/mcp.mjs` (absolute path — verify
-   the file exists first with `ls`; a dangling path is worse than no file).
+2. Write `mcp.json` that launches `npx openlotus agent` (the MCP server; a
+   local-checkout absolute path to `cli/mcp.mjs` also works — if you use the
+   path, verify the file exists first with `ls`).
 3. Append the standing-rules block to `AGENTS.md` (create the file if missing);
    for Claude Code repos also ensure `CLAUDE.md` contains the `@AGENTS.md` stub.
 4. Prefer the skill's helper: run `install.sh` from the installed skill
@@ -168,6 +170,10 @@ Check for setup, in this order:
    `bash ~/.claude/skills/vibe-to-ship/scripts/install.sh`
    (or `.opencode/skills/vibe-to-ship/scripts/install.sh`). It is
    idempotent: skips what exists, never duplicates blocks.
+5. Seed the map once with `npx openlotus bootstrap` (or the `bootstrap_state`
+   MCP tool) so the ProgressMap starts from the repo's own README/PROGRESS/
+   AGENTS instead of empty. Ongoing reality pushes: `npx openlotus sync`.
+   `npx openlotus status` prints the latest drift without a new snapshot.
 
 **Verify setup worked:** run the boot doctor from the skill path, again with
 the project as your working directory:
