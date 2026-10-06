@@ -88,9 +88,12 @@ The loop works fully offline. Pair it with [OpenLotus](https://www.openlotus.io)
 
 ```bash
 npx openlotus pair          # links this repo to your OpenLotus project
+npx openlotus bootstrap     # seeds the map from the repo's own README/PROGRESS/AGENTS
+npx openlotus sync          # pushes a fresh reality snapshot to the dashboard
+npx openlotus status        # prints latest observed state + drift
 ```
 
-Your agent then gets five MCP tools — `get_memory`, `get_reality`, `get_drift`, `record_decision`, `create_project` — so the next session starts by reading what actually happened last time, not by guessing. File *shapes* and signals only; your code never leaves your machine.
+Your agent then gets thirteen MCP tools — memory, reality, decisions, constraints, failures, and project setup (full list in `references/openlotus-engine.md`) — so the next session starts by reading what actually happened last time, not by guessing. File *shapes* and signals only; your code never leaves your machine.
 
 ## CI integration
 
