@@ -22,18 +22,33 @@ boots with the loop. **Never paste instructions into prompts again.**
 ## OpenLotus loop (standing rules)
 
 Shared memory lives in OpenLotus via MCP tools: get_memory, get_reality,
-get_drift, record_decision. The founder sees the same data on the web dashboard.
+get_drift, record_decision, record_constraint, report_failure, record_lesson.
+The founder sees the same data on the web dashboard. These rules apply to
+EVERY action and every prompt, not just session start.
 
-1. **Boot**: at the START of any work session, call get_memory + get_drift
-   before planning anything. If drift findings exist, surface them to me first.
+CLI commands (local, run in your repo):
+- npx openlotus pair       one-time: link this repo to a cloud project
+- npx openlotus bootstrap  one-time: seed the map from README/PROGRESS/AGENTS
+- npx openlotus sync       push a fresh reality snapshot to the dashboard
+- npx openlotus status     print latest observed state + drift
+- npx openlotus agent      MCP server over stdio (what your harness launches)
+- npx openlotus version    print the installed CLI version
+
+1. **Boot**: at the START of any work session or non-trivial prompt, call
+   get_memory + get_drift before planning anything. If drift findings exist,
+   surface them to the founder first.
 2. **Decisions**: whenever a direction choice is made (stack, scope, schema,
    tradeoff), call record_decision immediately — title + why. Do not batch.
 3. **Reality check**: after completing meaningful work, call get_reality and
-   mention surprises (unexpected dirty files, TODO spikes).
+   mention surprises (unexpected dirty files, TODO spikes). npx openlotus
+   sync pushes the same snapshot to the dashboard.
 4. **PROGRESS.md**: update after each milestone or plan change so the file
    matches the map. If they disagree, the map wins — fix the file.
-5. **Stale > silent**: if context is missing, call get_memory again instead of
-   guessing. Never invent project state from chat history alone.
+5. **Failures and constraints**: when an approach fails, call report_failure
+   (never retry the same strategy silently). When a boundary is set, call
+   record_constraint. Never bury constraints or failures in decision prose.
+6. **Stale > silent**: if context is missing, call get_memory again instead
+   of guessing. Never invent project state from chat history alone.
 ```
 
 ## What happens after you commit it
@@ -52,7 +67,7 @@ Hooks fire even if the model ignores the rules:
 {
   "hooks": {
     "SessionStart": [{ "type": "command", "command": "npx openlotus status" }],
-    "Stop": [{ "type": "command", "command": "openlotus sync" }]
+    "Stop": [{ "type": "command", "command": "npx openlotus sync" }]
   }
 }
 ```
