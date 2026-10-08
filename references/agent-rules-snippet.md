@@ -22,9 +22,11 @@ boots with the loop. **Never paste instructions into prompts again.**
 ## OpenLotus loop (standing rules)
 
 Shared memory lives in OpenLotus via MCP tools: get_memory, get_reality,
-get_drift, record_decision, record_constraint, report_failure, record_lesson.
-The founder sees the same data on the web dashboard. These rules apply to
-EVERY action and every prompt, not just session start.
+get_drift, record_decision, record_constraint, report_failure, record_lesson,
+write_scratchpad, read_scratchpad, manage_tasks, dismiss_drift,
+resolve_failure, resolve_risk. The founder sees the same data on the web
+dashboard. These rules apply to EVERY action and every prompt, not just
+session start.
 
 CLI commands (local, run in your repo):
 - npx openlotus pair       one-time: link this repo to a cloud project
@@ -36,18 +38,32 @@ CLI commands (local, run in your repo):
 
 1. **Boot**: at the START of any work session or non-trivial prompt, call
    get_memory + get_drift before planning anything. If drift findings exist,
-   surface them to the founder first.
+   surface them to the founder first. If the map has no goal yet, set one
+   first (propose_changes on progressMap.goal, or confirm it with the
+   founder) — a project without a goal is not set up.
 2. **Decisions**: whenever a direction choice is made (stack, scope, schema,
    tradeoff), call record_decision immediately — title + why. Do not batch.
-3. **Reality check**: after completing meaningful work, call get_reality and
+3. **Founder notes**: whenever the founder says something worth keeping that
+   is not yet a decision, task, or constraint (a stray idea, a preference,
+   something to check later), call write_scratchpad immediately. Check
+   read_scratchpad before asking the founder something they may already
+   have answered.
+4. **Tasks**: track real work with manage_tasks — create on starting,
+   update status as it moves (queued/running/done/failed/pending), set due
+   dates, mark done the moment it is done. Never leave a finished task open.
+5. **Reality check**: after completing meaningful work, call get_reality and
    mention surprises (unexpected dirty files, TODO spikes). npx openlotus
    sync pushes the same snapshot to the dashboard.
-4. **PROGRESS.md**: update after each milestone or plan change so the file
+6. **Close the loop**: when a drift finding is addressed, call dismiss_drift
+   so it stops resurfacing. When a recorded failure is fixed, call
+   resolve_failure. When a risk is handled, resolve it. Fixed items must
+   disappear from the record — never leave solved problems looking open.
+7. **PROGRESS.md**: update after each milestone or plan change so the file
    matches the map. If they disagree, the map wins — fix the file.
-5. **Failures and constraints**: when an approach fails, call report_failure
+8. **Failures and constraints**: when an approach fails, call report_failure
    (never retry the same strategy silently). When a boundary is set, call
    record_constraint. Never bury constraints or failures in decision prose.
-6. **Stale > silent**: if context is missing, call get_memory again instead
+9. **Stale > silent**: if context is missing, call get_memory again instead
    of guessing. Never invent project state from chat history alone.
 ```
 

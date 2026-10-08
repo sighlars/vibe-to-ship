@@ -43,6 +43,12 @@ directly at `cli/mcp.mjs` with an absolute path.)
 | `record_lesson` | `pattern` (required), `diagnosis?`, `evidence?` | Learn | Distills the pattern/diagnosis so future sessions change approach |
 | `report_action` | `summary` (required), `files?`, `result?` | Act | Fire-and-forget evidence log of consequential steps |
 | `request_permission` | `action` (required), `reason?`, `risk?` (low/high) | Act | Records a human-approval request; the request itself is not approval |
+| `write_scratchpad` | `title` (required), `content` (required) | Learn | Founder note that is not yet a decision/task/constraint; readable by every agent |
+| `read_scratchpad` | None | Boot / Learn | All founder notes; check before asking something already answered |
+| `manage_tasks` | `action` list/create/update, `title?`, `taskId?`, `status?` (queued/running/done/failed/pending), `dueAt?` | Act | Project task list; create on starting, update status and due dates, mark done immediately |
+| `dismiss_drift` | `findingId` (required) | Triage | Closes an addressed drift finding so it stops resurfacing; permanent per finding |
+| `resolve_failure` | `decision` (required, id or text) | Learn | Marks a fixed failure resolved; history kept, stops surfacing as open |
+| `resolve_risk` | `risk` (required, exact text) | Learn | Marks a handled risk resolved |
 | `bootstrap_state` | None | Setup | Seeds the ProgressMap from AGENTS.md / PROGRESS.md / README.md — same as `npx openlotus bootstrap` |
 
 ---

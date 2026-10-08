@@ -172,7 +172,14 @@ Check for setup, in this order:
    idempotent: skips what exists, never duplicates blocks.
 5. Seed the map once with `npx openlotus bootstrap` (or the `bootstrap_state`
    MCP tool) so the ProgressMap starts from the repo's own README/PROGRESS/
-   AGENTS instead of empty. Ongoing reality pushes: `npx openlotus sync`.
+   AGENTS instead of empty. Then set the project goal if it is still blank
+   (propose_changes on progressMap.goal, or confirm it with the founder).
+   Ongoing reality pushes: `npx openlotus sync`.
+6. From the first real session on, behave like a resident: write founder
+   notes with write_scratchpad, track work with manage_tasks
+   (create/update/done/pending/due), close addressed drift with
+   dismiss_drift, and resolve fixed failures/risks. The standing-rules block
+   defines the full loop.
    `npx openlotus status` prints the latest drift without a new snapshot.
 
 **Verify setup worked:** run the boot doctor from the skill path, again with

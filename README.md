@@ -93,7 +93,7 @@ npx openlotus sync          # pushes a fresh reality snapshot to the dashboard
 npx openlotus status        # prints latest observed state + drift
 ```
 
-Your agent then gets thirteen MCP tools — memory, reality, decisions, constraints, failures, and project setup (full list in `references/openlotus-engine.md`) — so the next session starts by reading what actually happened last time, not by guessing. File *shapes* and signals only; your code never leaves your machine.
+Your agent then gets the full MCP tool catalog — memory, reality, decisions, constraints, failures, scratchpad, tasks, and project setup (full list in `references/openlotus-engine.md`) — so the next session starts by reading what actually happened last time, not by guessing. File *shapes* and signals only; your code never leaves your machine.
 
 ## CI integration
 
