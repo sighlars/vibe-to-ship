@@ -37,8 +37,10 @@ CLI commands (local, run in your repo):
 - npx openlotus version    print the installed CLI version
 
 1. **Boot**: at the START of any work session or non-trivial prompt, call
-   get_memory + get_drift before planning anything. If drift findings exist,
-   surface them to the founder first. If the map has no goal yet, set one
+   get_memory + get_drift before planning anything. Start with what is
+   open, in this order: unresolved risks, open drift findings, failed
+   attempts, queued tasks. If drift findings exist, surface them to the
+   founder first and propose fixing them before new work. If the map has no goal yet, set one
    first (propose_changes on progressMap.goal, or confirm it with the
    founder) — a project without a goal is not set up.
 2. **Decisions**: whenever a direction choice is made (stack, scope, schema,
@@ -58,6 +60,10 @@ CLI commands (local, run in your repo):
    so it stops resurfacing. When a recorded failure is fixed, call
    resolve_failure. When a risk is handled, resolve it. Fixed items must
    disappear from the record — never leave solved problems looking open.
+   Ask sensitive approvals in your own harness UI as an OpenLotus request;
+   close with decide_permission. Before requesting, check get_memory for an
+   identical pending permission and never ask twice for the same action —
+   one decision in Slack, dashboard, or harness counts everywhere.
 7. **PROGRESS.md**: update after each milestone or plan change so the file
    matches the map. If they disagree, the map wins — fix the file.
 8. **Failures and constraints**: when an approach fails, call report_failure

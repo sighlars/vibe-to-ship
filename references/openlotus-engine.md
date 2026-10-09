@@ -42,7 +42,8 @@ directly at `cli/mcp.mjs` with an absolute path.)
 | `report_failure` | `title`, `strategy` (required), `reason?`, `context?` | Act | Flags a failed attempt by stable strategy string so the same approach isn't silently retried |
 | `record_lesson` | `pattern` (required), `diagnosis?`, `evidence?` | Learn | Distills the pattern/diagnosis so future sessions change approach |
 | `report_action` | `summary` (required), `files?`, `result?` | Act | Fire-and-forget evidence log of consequential steps |
-| `request_permission` | `action` (required), `reason?`, `risk?` (low/high) | Act | Records a human-approval request; the request itself is not approval |
+| `request_permission` | `action` (required), `reason?`, `risk?` (low/high) | Act | Ask the human NOW in your own harness UI, labeled as OpenLotus; never proceed until they answer; close with decide_permission |
+| `decide_permission` | `permissionId` (required), `decision` approved/rejected, `note?` | Act | Records the human's answer, closing the permission |
 | `write_scratchpad` | `title` (required), `content` (required) | Learn | Founder note that is not yet a decision/task/constraint; readable by every agent |
 | `read_scratchpad` | None | Boot / Learn | All founder notes; check before asking something already answered |
 | `manage_tasks` | `action` list/create/update, `title?`, `taskId?`, `status?` (queued/running/done/failed/pending), `dueAt?` | Act | Project task list; create on starting, update status and due dates, mark done immediately |
