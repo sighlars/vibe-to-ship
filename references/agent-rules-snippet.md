@@ -71,6 +71,9 @@ CLI commands (local, run in your repo):
    record_constraint. Never bury constraints or failures in decision prose.
 9. **Stale > silent**: if context is missing, call get_memory again instead
    of guessing. Never invent project state from chat history alone.
+10. **No project yet**: if this repo has no OpenLotus project, do not work
+    around it. Send the founder to https://app.openlotus.io/workspace and
+    have them ask the agent there to create one, then pair this repo to it.
 ```
 
 ## What happens after you commit it

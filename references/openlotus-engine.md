@@ -74,7 +74,7 @@ flowchart LR
 
 1. Pair once: `npx openlotus pair` (no flags — opens your browser to `/pair`; log in, pick a project, the CLI finishes automatically)
 2. Add to your MCP client config (copy `mcp.json.example`; for Claude Desktop use `claude_desktop_config.json`, for Cursor use `.cursor/mcp.json`) with the launch command `npx openlotus agent` (or the absolute path to `cli/mcp.mjs` for a local checkout).
-3. Restart the client — thirteen tools appear under the `openlotus` server.
+3. Restart the client — the full tool catalog (decisions, memory, tasks, drift, approvals) appears under the `openlotus` server.
 
 Then run this skill as usual. The tools read/write the same Postgres-backed ProgressMap the OpenLotus web dashboard renders, so every `record_decision` your agent makes shows up on the founder's dashboard in real time. Full contract: [`docs/mcp_architecture.md`](../../docs/mcp_architecture.md).
 
