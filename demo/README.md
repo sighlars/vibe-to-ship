@@ -19,3 +19,22 @@ Two phases — capture once, re-render freely:
 To re-cut: edit `transcript.json` (drop/reorder steps) or the timing
 constants in `render.py` and re-run phase 2 only. Nothing here is faked —
 every line on screen is verbatim output of a command that actually ran.
+
+## Part 2: OpenLotus in a real agent (`demo-openlotus.mp4`)
+
+Same pipeline, second transcript: `capture2.py` runs `npx openlotus
+--help`, `sync`, `status`, then a real headless `opencode run` session
+(researcher agent, free model, read-only prompt) that reads the live map
+over MCP and reports drift. Render with env overrides:
+
+```
+TRANSCRIPT=transcript2.json FRAMES_DIR=/tmp/demo-pipeline/frames2 \
+HEADER_TITLE="demo — openlotus in a real agent" python render.py
+```
+
+Two presentation-only cleanups, both documented here: ANSI escapes,
+carriage-return redraws, and npm launcher notice lines are stripped
+(standard terminal-recorder practice; command text and outputs verbatim),
+and the agent session's framing lines (model header, tool-call statuses)
+are restored to live order — non-tty capture emits them after the report
+due to stream buffering, while a live viewer sees them first.

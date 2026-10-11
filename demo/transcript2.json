@@ -1,0 +1,115 @@
+{
+ "steps": [
+  {
+   "kind": "title",
+   "lines": [
+    "openlotus \u2014 memory that survives sessions",
+    "the same map, in your terminal and your agent"
+   ]
+  },
+  {
+   "kind": "cmd",
+   "cmd": "npx openlotus --help",
+   "output": [
+    "openlotus \u2014 live development-process layer",
+    "",
+    "  openlotus pair                             # opens browser to pick a project (recommended)",
+    "  openlotus pair --project <id>              # pair with an existing project",
+    "  openlotus sync                             # sense now, push to cloud, show drift",
+    "  openlotus status                           # latest observed reality + drift",
+    "  openlotus bootstrap                        # seed map from repo markdown files",
+    "  openlotus agent                            # run as MCP server (stdio) for your agents",
+    "  openlotus version                          # print the installed version",
+    "  openlotus help                             # this reference",
+    "",
+    "Env: OPENLOTUS_EMAIL, OPENLOTUS_PASSWORD, OPENLOTUS_BASE_URL",
+    "Docs: https://www.openlotus.io/docs#pairing"
+   ],
+   "exit": 0
+  },
+  {
+   "kind": "title",
+   "lines": [
+    "push reality to the map",
+    "one command after real work"
+   ]
+  },
+  {
+   "kind": "cmd",
+   "cmd": "npx openlotus sync",
+   "output": [
+    "Sensing local reality\u2026",
+    "Synced \u2713 (2026-10-11T17:30:36.440Z)",
+    "Drift: 1 finding(s)",
+    "  [INFO] 23 TODO markers in the code"
+   ],
+   "exit": 0
+  },
+  {
+   "kind": "cmd",
+   "cmd": "npx openlotus status",
+   "output": [
+    "\u2500\u2500 Observed reality \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+    "  branch     : main",
+    "  head       : 8cbcb0c feat(audit): scroll-3D cards, terms permanence, instant deletion, project teams, memory v1, doc purge",
+    "  quiet      : 0 days",
+    "  uncommitted: 0 files (+0/\u22120)",
+    "  files      : 501",
+    "  TODOs      : 23 (FIXME 9)",
+    "  language   : TypeScript",
+    "  trajectory : Steady",
+    "",
+    "\u2500\u2500 Drift \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+    "  [INFO] 23 TODO markers in the code"
+   ],
+   "exit": 0
+  },
+  {
+   "kind": "title",
+   "lines": [
+    "your agent reads the same map \u2014 live",
+    "a real coding agent, over MCP, right now"
+   ]
+  },
+  {
+   "kind": "cmd",
+   "cmd": "/home/sighlars/.opencode/bin/opencode run --agent researcher --model opencode/ling-3.1-flash-free --title \"openlotus-map-check\" \"Using ONLY the openlotus MCP tools get_memory and get_drift, read this project's shared ProgressMap and report drift as High, Watch, or Noise. Do not edit files. Do not run shell commands. Do not record anything. Under 12 lines.\"",
+   "output": [
+    "!  agent \"researcher\" is a subagent, not a primary agent. Falling back to default agent",
+    "> build \u00b7 ling-3.1-flash-free",
+    "\u2699 openlotus_get_memory Unknown",
+    "\u2699 openlotus_get_drift Unknown",
+    "**OpenLotus ProgressMap report**",
+    "",
+    "Paired project openlotus. Trajectory: Steady. Declared goal/currentBet/focus fields are blank.",
+    "",
+    "Observed: main @ 8cbcb0c, clean tree (0 dirty files), 501 files, TypeScript, 6 syncs.",
+    "",
+    "Drift findings: 1 total, severity info: \"23 TODO markers in the code\" (plus 9 FIXMEs observed).",
+    "",
+    "High: none. No contradictions, no blocked goals, no open risks, no pending permissions.",
+    "",
+    "Watch: (1) TODO debt, real but not blocking, top TODOs unnamed as decisions. (2) Declared goal/currentBet/focus empty, so the map cannot express focus even though 4 decisions exist.",
+    "",
+    "Noise: none. hasLicense false is observed metadata, not drift.",
+    "",
+    "Recent decisions: Why redesign (Oct 10), onboarding FK, three-layer memory system, audit round closed (Oct 11, latest).",
+    "",
+    "Evidence on record: tsc 0, eslint 0 new, suites 23/23, 8/8, 61/61, cli 4/4; demo mp4 verified frame-by-frame.",
+    "",
+    "Nothing recorded, no files edited, no shell run.",
+    "",
+    ""
+   ],
+   "exit": 0
+  },
+  {
+   "kind": "end",
+   "lines": [
+    "openlotus.io \u2014 memory that survives sessions",
+    "docs: openlotus.io/docs#pairing",
+    "vibe first: github.com/sighlars/vibe-to-ship"
+   ]
+  }
+ ]
+}

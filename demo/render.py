@@ -9,7 +9,9 @@ import subprocess
 from PIL import Image, ImageDraw, ImageFont
 
 W, H, FPS = 1280, 720, 30
-FRAMES = "/tmp/demo-pipeline/frames"
+FRAMES = os.environ.get("FRAMES_DIR", "/tmp/demo-pipeline/frames")
+TRANSCRIPT = os.environ.get("TRANSCRIPT", "/tmp/demo-pipeline/transcript.json")
+HEADER_TITLE = os.environ.get("HEADER_TITLE", "demo — vibe-to-ship × openlotus")
 BG = (20, 18, 15)
 HEADER_BG = (32, 28, 23)
 TEXT = (236, 231, 223)
@@ -122,12 +124,12 @@ def main():
     os.makedirs(FRAMES, exist_ok=True)
     for f in os.listdir(FRAMES):
         os.remove(os.path.join(FRAMES, f))
-    t = json.load(open("/tmp/demo-pipeline/transcript.json"))["steps"]
+    t = json.load(open(TRANSCRIPT))["steps"]
     n = 0
     shown: list = []  # (text, color)
 
     def paint(cursor=False):
-        img, d = base("demo — vibe-to-ship × openlotus")
+        img, d = base(HEADER_TITLE)
         draw_lines(d, shown, cursor)
         return img
 
@@ -156,11 +158,11 @@ def main():
             for ch in raw_line:
                 buf += ch
                 shown_tmp = shown + [(ln, TEXT) for ln in wrap_line(buf)]
-                img, d = base("demo — vibe-to-ship × openlotus")
+                img, d = base(HEADER_TITLE)
                 draw_lines(d, shown_tmp, True)
                 n = save(img, n)
                 # ~2 frames per char at 30fps ≈ 65ms/char
-                img2, d2 = base("demo — vibe-to-ship × openlotus")
+                img2, d2 = base(HEADER_TITLE)
                 draw_lines(d2, shown_tmp, False)
                 n = save(img2, n)
             push(shown, raw_line, TEXT)
