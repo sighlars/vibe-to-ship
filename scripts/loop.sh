@@ -30,12 +30,14 @@ fi
 case "$BEAT" in
   boot)
     echo "== BEAT 1/5: BOOT =="
-    exec "$SCRIPT_DIR/doctor.sh"
+    # sh-prefix: scripts ship 0644 (no exec bit), so never exec siblings
+    # directly — a fresh clone would fail with Permission denied.
+    exec sh "$SCRIPT_DIR/doctor.sh"
     ;;
 
   triage)
     echo "== BEAT 2/5: TRIAGE =="
-    exec "$SCRIPT_DIR/triage.sh"
+    exec sh "$SCRIPT_DIR/triage.sh"
     ;;
 
   act)
@@ -59,11 +61,12 @@ case "$BEAT" in
 
   verify)
     echo "== BEAT 4/5: VERIFY =="
+    shift # drop the beat name so flags (e.g. --scope) reach verify.sh
     if [ -f "$SCRIPT_DIR/verify.sh" ]; then
-      exec "$SCRIPT_DIR/verify.sh"
+      exec sh "$SCRIPT_DIR/verify.sh" "$@"
     else
       echo "verify.sh not found — falling back to triage as reality check"
-      exec "$SCRIPT_DIR/triage.sh"
+      exec sh "$SCRIPT_DIR/triage.sh" "$@"
     fi
     ;;
 

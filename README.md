@@ -4,6 +4,8 @@
   <img src="assets/demo-loop.gif" alt="The vibe-to-ship 5-beat loop running in a terminal: triage, act, verify, learn" width="100%">
 </p>
 
+Watch the full loop run end to end (100 seconds, real commands, nothing faked): [`assets/demo-terminal.mp4`](assets/demo-terminal.mp4) — built by the automated pipeline in [`demo/`](demo/).
+
 **Your agent ships. This skill makes sure it ships the truth.**
 
 AI coding agents are relentless builders and unreliable narrators. They declare "authentication is complete" while 14 files sit uncommitted, 6 tests are missing, and half the planned flows don't exist. The gap between what your agent *says* and what your repository *shows* is where projects die quietly.

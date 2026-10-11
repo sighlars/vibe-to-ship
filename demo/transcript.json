@@ -1,0 +1,253 @@
+{
+ "steps": [
+  {
+   "kind": "title",
+   "lines": [
+    "a vibe-coded mess",
+    "one dirty repo, two TODOs, no proof of done"
+   ]
+  },
+  {
+   "kind": "cmd",
+   "cmd": "git status --short",
+   "output": [
+    " M notes.txt"
+   ],
+   "exit": 0
+  },
+  {
+   "kind": "title",
+   "lines": [
+    "beat 1/5 \u2014 boot",
+    "is this repo even workable?"
+   ]
+  },
+  {
+   "kind": "cmd",
+   "cmd": "sh /home/sighlars/Desktop/vibe-to-ship/scripts/loop.sh boot",
+   "output": [
+    "== BEAT 1/5: BOOT ==",
+    "OK: git repo on branch master, 1 dirty files",
+    "OK: node v26.10.0",
+    "Watch: no mcp.json found \u2014 agent tools unavailable until configured",
+    "Watch: not paired \u2014 run: npx openlotus pair (optional, local-only mode still works)",
+    "Watch: no standing-rules block in AGENTS.md/CLAUDE.md \u2014 run ./scripts/install.sh",
+    "---",
+    "doctor: 0 high, 3 watch, 0 noise",
+    "Result: READY (warnings above are non-blocking)"
+   ],
+   "exit": 0
+  },
+  {
+   "kind": "title",
+   "lines": [
+    "beat 2/5 \u2014 triage",
+    "reality before planning"
+   ]
+  },
+  {
+   "kind": "cmd",
+   "cmd": "sh /home/sighlars/Desktop/vibe-to-ship/scripts/loop.sh triage",
+   "output": [
+    "== BEAT 2/5: TRIAGE ==",
+    "## Triage \u2014 demo-app @ master (2026-10-11)",
+    "- Reality: quiet 0d \u00b7 1 dirty files \u00b7 2 TODOs",
+    "Watch: 1 uncommitted files \u2014 sync or commit before planning",
+    "Noise: 2 TODO markers \u2014 within tolerance"
+   ],
+   "exit": 0
+  },
+  {
+   "kind": "title",
+   "lines": [
+    "beat 3/5 \u2014 act",
+    "one task, one scope, one definition of done"
+   ]
+  },
+  {
+   "kind": "cmd",
+   "cmd": "sh /home/sighlars/Desktop/vibe-to-ship/scripts/loop.sh act",
+   "output": [
+    "== BEAT 3/5: ACT ==",
+    "",
+    "Before writing code, state the bounded-task contract out loud:",
+    "",
+    "  TASK:   <one sentence, one deliverable>",
+    "  SCOPE:  <files/dirs allowed to touch \u2014 anything else is drift>",
+    "  DONE:   <the check that proves it, e.g. 'pnpm test passes'>",
+    "  STOP:   <condition to halt and re-triage, e.g. 'if schema must change'>",
+    "",
+    "Rules while acting:",
+    "  - One task per loop. Park everything else in the backlog.",
+    "  - If DONE needs a second deliverable, that is a second loop.",
+    "  - If you violate SCOPE, stop, run '/home/sighlars/Desktop/vibe-to-ship/scripts/loop.sh triage', re-contract.",
+    "",
+    "Now act. When finished, run: /home/sighlars/Desktop/vibe-to-ship/scripts/loop.sh verify"
+   ],
+   "exit": 0
+  },
+  {
+   "kind": "title",
+   "lines": [
+    "beat 4/5 \u2014 verify",
+    "done means proven \u2014 watch it fail"
+   ]
+  },
+  {
+   "kind": "cmd",
+   "cmd": "sh /home/sighlars/Desktop/vibe-to-ship/scripts/loop.sh verify --scope \"src/\" --build-cmd \"npm run build\" --test-cmd \"npm test\"",
+   "output": [
+    "== BEAT 4/5: VERIFY ==",
+    "== VERIFY: reality vs. plan ==",
+    "",
+    "-- 1. Git reality --",
+    "FAIL: scope violations \u2014 files outside the declared plan: notes.txt",
+    "",
+    "-- 2. Build --",
+    "running: npm run build",
+    "OK:   build succeeded",
+    "",
+    "-- 3. Tests --",
+    "running: npm test",
+    "OK:   tests passed",
+    "",
+    "-- 4. Drift markers --",
+    "OK:   no new drift markers introduced",
+    "",
+    "VERDICT: FAILED \u2014 fix the FAIL items, then re-run."
+   ],
+   "exit": 1
+  },
+  {
+   "kind": "title",
+   "lines": [
+    "drift caught \u2014 file the scratch, do the work"
+   ]
+  },
+  {
+   "kind": "cmd",
+   "cmd": "git add notes.txt && git -c user.email=demo@local -c user.name=demo commit -qm \"chore: file scratch notes\" && touch MEMORY.md && git status --short && echo \"(ready)\"",
+   "output": [
+    "?? MEMORY.md",
+    "(ready)"
+   ],
+   "exit": 0
+  },
+  {
+   "kind": "cmd",
+   "cmd": "cat > src/math.js <<'EOF'\nexport const BASE_BONUS = 42;\nexport const total = (a, b) => a + b + BASE_BONUS;\nEOF\ngit diff --stat",
+   "output": [
+    " src/math.js | 5 ++---",
+    " 1 file changed, 2 insertions(+), 3 deletions(-)"
+   ],
+   "exit": 0
+  },
+  {
+   "kind": "cmd",
+   "cmd": "sh /home/sighlars/Desktop/vibe-to-ship/scripts/loop.sh verify --scope \"src,MEMORY.md\" --build-cmd \"npm run build\" --test-cmd \"npm test\"",
+   "output": [
+    "== BEAT 4/5: VERIFY ==",
+    "== VERIFY: reality vs. plan ==",
+    "",
+    "-- 1. Git reality --",
+    "OK:   all changed files within declared scope",
+    "",
+    "-- 2. Build --",
+    "running: npm run build",
+    "OK:   build succeeded",
+    "",
+    "-- 3. Tests --",
+    "running: npm test",
+    "OK:   tests passed",
+    "",
+    "-- 4. Drift markers --",
+    "OK:   no new drift markers introduced",
+    "",
+    "VERDICT: PASSED \u2014 reality matches the plan. Safe to commit and record."
+   ],
+   "exit": 0
+  },
+  {
+   "kind": "cmd",
+   "cmd": "git add -A && git -c user.email=demo@local -c user.name=demo commit -qm \"fix: name the bonus, drop the TODOs\" && git status --short && echo \"(clean)\"",
+   "output": [
+    "(clean)"
+   ],
+   "exit": 0
+  },
+  {
+   "kind": "title",
+   "lines": [
+    "beat 5/5 \u2014 learn",
+    "the session writes down what happened"
+   ]
+  },
+  {
+   "kind": "cmd",
+   "cmd": "sh /home/sighlars/Desktop/vibe-to-ship/scripts/loop.sh learn && tail -n 7 MEMORY.md",
+   "output": [
+    "== BEAT 5/5: LEARN ==",
+    "Appended session summary to MEMORY.md",
+    "",
+    "## Session \u2014 2026-10-11 17:47",
+    "- Branch: master",
+    "- Dirty files at close: 0",
+    "- Last commit: e220f34 fix: name the bonus, drop the TODOs",
+    "- Decisions: <fill in \u2014 what did you choose and why?>",
+    "- Next: <fill in \u2014 the single next bounded task>"
+   ],
+   "exit": 0
+  },
+  {
+   "kind": "title",
+   "lines": [
+    "attach memory \u2014 pair once, then it persists",
+    "vibe-to-ship works offline; OpenLotus keeps the record"
+   ]
+  },
+  {
+   "kind": "cmd",
+   "cmd": "npx openlotus sync",
+   "output": [
+    "Sensing local reality\u2026",
+    "Synced \u2713 (2026-10-11T16:48:01.802Z)",
+    "Drift: 2 finding(s)",
+    "  [INFO] Substantial uncommitted work",
+    "  [INFO] 23 TODO markers in the code",
+    "npm notice run npx",
+    "npm notice run 'openlotus' sync"
+   ],
+   "exit": 0
+  },
+  {
+   "kind": "cmd",
+   "cmd": "npx openlotus status",
+   "output": [
+    "\u2500\u2500 Observed reality \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+    "  branch     : main",
+    "  head       : 3bb7686 feat(team): forced deletion survey, project-scoped invites, collaborator stamps",
+    "  quiet      : 0 days",
+    "  uncommitted: 7 files (+140/\u221232)",
+    "  files      : 501",
+    "  TODOs      : 23 (FIXME 9)",
+    "  language   : TypeScript",
+    "  trajectory : Building momentum",
+    "",
+    "\u2500\u2500 Drift \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
+    "  [INFO] Substantial uncommitted work",
+    "  [INFO] 23 TODO markers in the code",
+    "npm notice run npx",
+    "npm notice run 'openlotus' status"
+   ],
+   "exit": 0
+  },
+  {
+   "kind": "end",
+   "lines": [
+    "vibe-to-ship \u2014 your agent ships the truth",
+    "github.com/sighlars/vibe-to-ship",
+    "openlotus.io \u2014 memory that survives sessions"
+   ]
+  }
+ ]
+}
